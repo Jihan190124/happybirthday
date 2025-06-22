@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎂 happy birthday didiiiiii   🎉</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* Additional creative styles */
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    #birthday-popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff4081;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.5em;
+      font-family: 'Pacifico', cursive;
+      z-index: 9999;
+      box-shadow: 0 0 20px #fff;
+      animation: fadeInOut 6s ease-in-out;
+      display: none;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 1; }
+    }
+
+    body {
+      background: linear-gradient(270deg, #ff0080, #7928ca, #2af598);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
+</head>
+
+<body>
+  <div id="birthday-popup">
+    🎉 Happy Birthday, didiiiiiii! 🎂
+  </div>
+
+  <div id="drag-container">
+    <div id="spin-container">
+      <img src="imgs/1.jpg" alt="">
+      <img src="imgs/2.jpg" alt="">
+      <img src="imgs/3.jpg" alt="">
+      <img src="imgs/4.jpg" alt="">
+      <img src="imgs/5.jpg" alt="">
+      <img src="imgs/6.jpg" alt="">
+      <img src="imgs/7.jpg" alt="">
+      <img src="imgs/8.jpg" alt="">
+      <img src="imgs/9.jpg" alt="">
+      <p>🎈 Happy Birthday <mark style="background-color: yellow; color: red;">diduuuuuuuuuu</mark>! 🎂</p>
+    </div>
+    <div id="ground"></div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+
+  <!-- Audio Player (Hidden) -->
+  <audio id="background-music" src="song.mp3" autoplay loop></audio>
+
+  <!-- JavaScript -->
+  <script src="./script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const today = new Date();
+      const isBirthday = today.getDate() === 22 && today.getMonth() === 5; // 22 June
+      if (isBirthday) {
+        document.getElementById('birthday-popup').style.display = 'block';
+        const duration = 5 * 1000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+          confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+          });
+          confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+          });
+          if (Date.now() < end) {
+            requestAnimationFrame(frame);
+          }
+        })();
+      }
+    });
+  </script>
+</body>
+</html>
